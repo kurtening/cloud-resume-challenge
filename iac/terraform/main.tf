@@ -23,3 +23,11 @@ module "naming" {
   suffix  = [var.env_code]
 }
 
+locals {
+  common_tags = {
+    environment = var.environment
+    projectCode = var.project_code
+  }
+  resource_group_name = module.naming.resource_group.name
+}
+
