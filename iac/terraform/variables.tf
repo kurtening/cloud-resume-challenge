@@ -33,3 +33,7 @@ variable "cdn_endpoint_custom_domain_host_name" {
   type        = string
 }
 
+variable "github_repository_full_name" {
+  description = "The full name of the GitHub repository"
+  type        = string
+}
