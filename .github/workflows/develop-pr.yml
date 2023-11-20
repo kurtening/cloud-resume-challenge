@@ -7,5 +7,8 @@ on:
 jobs:
     terraform-plan:
         uses: ./.github/workflows/terraform-plan.yml
+        permissions: 
+            contents: read
+            pull-requests: write
         with:
             environment: development
