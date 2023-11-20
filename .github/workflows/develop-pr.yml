@@ -3,6 +3,7 @@ on:
     pull_request: 
         branches: 
             - develop
+            - feature/*
 jobs:
     terraform-plan:
         uses: ./.github/workflows/terraform-plan.yml
