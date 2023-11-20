@@ -70,3 +70,17 @@ module "cosmosdb" {
   resource_group_name   = azurerm_resource_group.resource_group.name
 }
 
+module "function_app" {
+  source                             = "./modules/function_app"
+  region                             = var.region
+  app_service_plan_name              = module.naming.app_service_plan.name
+  resource_group_name                = azurerm_resource_group.resource_group.name
+  os_type                            = "Linux"
+  sku_name                           = "Y1"
+  function_app_name                  = module.naming.function_app.name
+  storage_account_name               = module.storage_account.storage_account_name
+  storage_account_access_key         = module.storage_account.storage_account_access_key
+  application_insights_key           = module.application_insights.application_insights_instrumentation_key
+  cosmosdb_account_connection_string = module.cosmosdb.comosdb_connection_strings
+}
+
