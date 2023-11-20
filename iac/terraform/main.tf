@@ -63,3 +63,10 @@ module "application_insights" {
   # application_type        = "your-app-type"
 }
 
+module "cosmosdb" {
+  source                = "./modules/cosmosdb"
+  location              = var.region
+  cosmosdb_account_name = module.naming.cosmosdb_account.name
+  resource_group_name   = azurerm_resource_group.resource_group.name
+}
+
