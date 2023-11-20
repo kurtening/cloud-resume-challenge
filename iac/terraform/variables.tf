@@ -28,3 +28,8 @@ variable "environment" {
   type        = string
 }
 
+variable "cdn_endpoint_custom_domain_host_name" {
+  description = "The custom domain host name for CDN endpoint"
+  type        = string
+}
+
