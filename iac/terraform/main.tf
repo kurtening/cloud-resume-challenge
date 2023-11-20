@@ -46,3 +46,10 @@ module "storage_account" {
   account_tier             = "Standard"
 }
 
+module "log_analytics_workspace" {
+  source                       = "./modules/log_analytics_workspace"
+  region                       = var.region
+  log_analytics_workspace_name = module.naming.log_analytics_workspace.name
+  resource_group_name          = azurerm_resource_group.resource_group.name
+}
+
