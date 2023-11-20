@@ -30,3 +30,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Upload Configuration
+        uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.0
+        id: plan-upload
+        with:
+          workspace: ${{ env.TF_CLOUD_WORKSPACE }}
+          directory: ${{ env.CONFIG_DIRECTORY }}
+          speculative: true
+
