@@ -53,3 +53,13 @@ module "log_analytics_workspace" {
   resource_group_name          = azurerm_resource_group.resource_group.name
 }
 
+module "application_insights" {
+  source                    = "./modules/application_insights"
+  location                  = var.region
+  application_insights_name = module.naming.application_insights.name
+  resource_group_name       = azurerm_resource_group.resource_group.name
+  workspace_id              = module.log_analytics_workspace.log_analytics_workspace_id
+  # Uncomment below for different app-type. Default is "other"
+  # application_type        = "your-app-type"
+}
+
