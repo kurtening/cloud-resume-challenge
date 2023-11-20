@@ -15,3 +15,11 @@ provider "azurerm" {
 provider "github" {
   token = var.github_token
 }
+
+module "naming" {
+  version = "0.4.0"
+  source  = "Azure/naming/azurerm"
+  prefix  = [var.region_code, var.project_code]
+  suffix  = [var.env_code]
+}
+
