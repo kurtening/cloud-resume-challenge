@@ -84,3 +84,16 @@ module "function_app" {
   cosmosdb_account_connection_string = module.cosmosdb.comosdb_connection_strings
 }
 
+module "cdn" {
+  source                               = "./modules/cdn"
+  location                             = var.region
+  resource_group_name                  = azurerm_resource_group.resource_group.name
+  cdn_profile_name                     = module.naming.cdn_profile.name
+  sku                                  = "Standard_Microsoft"
+  cdn_endpoint_name                    = var.project_code
+  cdn_endpoint_origin_name             = "storage-account-web-host"
+  cdn_endpoint_origin_host_name        = module.storage_account.storage_account_primary_web_host
+  cdn_endpoint_custom_domain_name      = replace(var.cdn_endpoint_custom_domain_host_name, ".", "-")
+  cdn_endpoint_custom_domain_host_name = var.cdn_endpoint_custom_domain_host_name
+}
+
