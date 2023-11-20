@@ -1,0 +1,10 @@
+name: Development Branch Pull Request Workflow
+on:
+    pull_request: 
+        branches: 
+            - develop
+jobs:
+    terraform-plan:
+        uses: ./.github/workflows/terraform-plan.yml
+        with:
+            environment: development
