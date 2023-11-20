@@ -37,3 +37,12 @@ resource "azurerm_resource_group" "resource_group" {
   tags     = local.common_tags
 }
 
+module "storage_account" {
+  source                   = "./modules/storage_account"
+  region                   = var.region
+  storage_account_name     = module.naming.storage_account.name
+  resource_group_name      = azurerm_resource_group.resource_group.name
+  account_replication_type = var.environment == "development" ? "LRS" : "ZRS"
+  account_tier             = "Standard"
+}
+
