@@ -17,9 +17,6 @@ jobs:
     environment: ${{ inputs.environment }}
     name: "Terraform Plan"
     runs-on: ubuntu-latest
-    permissions: 
-      contents: read
-      pull-requests: write
     env:
       TF_CLOUD_ORGANIZATION: ${{ vars.TERRAFORM_CLOUD_ORGANIZATION }}
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
@@ -35,7 +32,6 @@ jobs:
         with:
           organization: ${{ env.TF_CLOUD_ORGANIZATION }}
           workspace: ${{ env.TF_CLOUD_WORKSPACE }}
-          token: ${{ env.TF_API_TOKEN }}
           directory: ${{ env.CONFIG_DIRECTORY }}
           speculative: true
 
