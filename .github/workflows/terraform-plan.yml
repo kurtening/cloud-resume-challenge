@@ -1,16 +1,10 @@
 name: "Terraform Plan"
 
 on:
-  workflow_call:
-    inputs:
-      environment:
-        required: true
-        type: string
-  workflow_dispatch:
-    inputs:
-      environment:
-        required: true
-        type: string
+  pull_request:
+    paths:
+      - iac/terraform/*
+      - .github/workflows/terraform*
 
 env:
   TF_CLOUD_ORGANIZATION: ${{ vars.TERRAFORM_CLOUD_ORGANIZATION }}
