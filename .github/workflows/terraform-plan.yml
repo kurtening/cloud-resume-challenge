@@ -1,50 +1,46 @@
 name: "Terraform Plan"
 
 on:
-  workflow_call:
-    inputs:
-      environment:
-        required: true
-        type: string
-  workflow_dispatch:
-    inputs:
-      environment:
-        required: true
-        type: string
+  pull_request:
+    paths:
+      - iac/terraform/*
+      - .github/workflows/terraform*
 
 env:
   TF_CLOUD_ORGANIZATION: ${{ vars.TERRAFORM_CLOUD_ORGANIZATION }}
-  TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
-  TF_CLOUD_WORKSPACE: "${{ vars.TERRAFORM_WORKSPACE_PREFIX }}-${{ inputs.environment }}"
-  CONFIG_DIRECTORY: ./iac/terraform
+  TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
+  TF_WORKSPACE: ${{ vars.TERRAFORM_CLOUD_WORKSPACE }}
+  CONFIG_DIRECTORY: "./iac/terraform"
 
 jobs:
   terraform:
-    environment: ${{ inputs.environment }}
     name: "Terraform Plan"
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Upload Configuration
-        uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.0
+        uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.1.1
         id: plan-upload
         with:
-          workspace: ${{ env.TF_CLOUD_WORKSPACE }}
+          workspace: ${{ env.TF_WORKSPACE }}
           directory: ${{ env.CONFIG_DIRECTORY }}
           speculative: true
 
       - name: Create Plan Run
-        uses: hashicorp/tfc-workflows-github/actions/create-run@v1.0.0
+        uses: hashicorp/tfc-workflows-github/actions/create-run@v1.1.1
         id: plan-run
         with:
-          workspace: ${{ env.TF_CLOUD_WORKSPACE }}
+          workspace: ${{ env.TF_WORKSPACE }}
           configuration_version: ${{ steps.plan-upload.outputs.configuration_version_id }}
           plan_only: true
 
       - name: Get Plan Output
-        uses: hashicorp/tfc-workflows-github/actions/plan-output@v1.0.0
+        uses: hashicorp/tfc-workflows-github/actions/plan-output@v1.1.1
         id: plan-output
         with:
           plan: ${{ fromJSON(steps.plan-run.outputs.payload).data.relationships.plan.data.id }}
