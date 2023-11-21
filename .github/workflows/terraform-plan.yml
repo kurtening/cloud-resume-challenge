@@ -8,9 +8,9 @@ on:
 
 env:
   TF_CLOUD_ORGANIZATION: ${{ vars.TERRAFORM_CLOUD_ORGANIZATION }}
-  TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
-  TF_CLOUD_WORKSPACE: "${{ vars.TERRAFORM_WORKSPACE_PREFIX }}-${{ inputs.environment }}"
-  CONFIG_DIRECTORY: ./iac/terraform
+  TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
+  TF_WORKSPACE: ${{ vars.TERRAFORM_CLOUD_WORKSPACE }}
+  CONFIG_DIRECTORY: "./iac/terraform"
 
 jobs:
   terraform:
