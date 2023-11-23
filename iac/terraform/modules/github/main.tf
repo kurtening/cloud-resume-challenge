@@ -8,7 +8,7 @@ resource "github_actions_secret" "function_app_publishing_profile" {
   plaintext_value = var.function_app_publishing_profile[0].password
 }
 
-resource "github_actions_environment" "storage_account_access_key" {
+resource "github_actions_secret" "storage_account_access_key" {
   repository      = data.github_repository.repository.name
   secret_name     = "SA_ACCESS_KEY"
   plaintext_value = var.storage_account_access_key
