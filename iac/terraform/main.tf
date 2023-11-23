@@ -100,7 +100,6 @@ module "cdn" {
 module "github" {
   source                          = "./modules/github"
   repository_full_name            = var.github_repository_full_name
-  environment                     = var.environment
   function_app_publishing_profile = module.function_app.function_app_publishing_profile
   storage_account_access_key      = module.storage_account.storage_account_access_key
 }
