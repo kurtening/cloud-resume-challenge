@@ -3,11 +3,6 @@ variable "repository_full_name" {
   type        = string
 }
 
-variable "environment" {
-  description = "The environment for the GitHub repository."
-  type        = string
-}
-
 variable "function_app_publishing_profile" {
   description = "Value for the FA_PUBLISHING_PROFILE secret."
   type        = list(object({
