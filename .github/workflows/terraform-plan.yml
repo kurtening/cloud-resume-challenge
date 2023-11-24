@@ -3,8 +3,8 @@ name: "Terraform Plan"
 on:
   pull_request:
     paths:
-      - iac/terraform/*
-      - .github/workflows/terraform*
+      - iac/terraform/**
+      - .github/workflows/terraform**
 
 env:
   TF_CLOUD_ORGANIZATION: ${{ vars.TERRAFORM_CLOUD_ORGANIZATION }}
