@@ -32,3 +32,7 @@ def increment_visitor_count(table_service, partition_key, row_key):
 
     return entity["Value"]
 
+
+def get_table_service(connection_string):
+    return TableService(connection_string=connection_string)
+
