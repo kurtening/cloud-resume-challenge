@@ -36,3 +36,27 @@ def increment_visitor_count(table_service, partition_key, row_key):
 def get_table_service(connection_string):
     return TableService(connection_string=connection_string)
 
+
+@app.route(route="http_trigger")
+def http_trigger(req: func.HttpRequest) -> func.HttpResponse:
+    """HTTP trigger function."""
+    logging.info('Python HTTP trigger function processed a request.')
+
+    # Check if the connection string is present
+    if not CONNECTION_STRING:
+        return func.HttpResponse(
+            "Connection string not found.",
+            status_code=500
+            )
+
+    # Create a TableService instance
+    table_service = get_table_service(CONNECTION_STRING)
+
+    # Increment the visitor count and get the updated value
+    visitor_counter = increment_visitor_count(table_service, '1', '1')
+
+    # Return the updated visitor count in the HTTP response
+    return func.HttpResponse(
+        visitor_counter,
+        status_code=200
+    )
