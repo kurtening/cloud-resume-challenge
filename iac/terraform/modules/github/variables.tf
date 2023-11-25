@@ -12,3 +12,8 @@ variable "storage_account_access_key" {
   description = "Value for the SA_ACCESS_KEY secret."
   type        = string
 }
+
+variable "azure_credentials_plaintext" {
+  description = "Plaintext value for Azure Credentials"
+  sensitive   = true
+}
