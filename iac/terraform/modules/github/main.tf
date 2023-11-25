@@ -8,6 +8,12 @@ resource "github_actions_secret" "storage_account_access_key" {
   plaintext_value = var.storage_account_access_key
 }
 
+resource "github_actions_secret" "azure_credentials" {
+  repository      = data.github_repository.repository.name
+  secret_name     = "AZURE_CREDENTIALS"
+  plaintext_value = jsondecode(var.azure_credentials)
+}
+
 resource "github_actions_variable" "function_app_name" {
   repository    = data.github_repository.repository.name
   variable_name = "FA_NAME"
