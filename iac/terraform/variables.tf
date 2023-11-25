@@ -37,3 +37,24 @@ variable "github_repository_full_name" {
   description = "The full name of the GitHub repository"
   type        = string
 }
+
+variable "ARM_CLIENT_ID" {
+  description = "Azure Service Principal Client ID"
+  type        = string
+}
+
+variable "ARM_CLIENT_SECRET" {
+  description = "Azure Service Principal Client Secret"
+  type        = string
+  sensitive   = true
+}
+
+variable "ARM_SUBSCRIPTION_ID" {
+  description = "Azure Subscription ID"
+  type        = string
+}
+
+variable "ARM_TENANT_ID" {
+  description = "Azure Tenant ID"
+  type        = string
+}
