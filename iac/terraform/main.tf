@@ -100,6 +100,6 @@ module "cdn" {
 module "github" {
   source                     = "./modules/github"
   repository_full_name       = var.github_repository_full_name
-  function_app_name          = module.function_app.function
+  function_app_name          = module.function_app.function_app_name
   storage_account_access_key = module.storage_account.storage_account_access_key
 }
