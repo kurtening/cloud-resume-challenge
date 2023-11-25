@@ -3,14 +3,9 @@ variable "repository_full_name" {
   type        = string
 }
 
-variable "function_app_publishing_profile" {
-  description = "Value for the FA_PUBLISHING_PROFILE secret."
-  type        = list(object({
-    name = string
-    password = string
-  }
-  ))
-  sensitive = true
+variable "function_app_name" {
+  description = "Value for the function app name"
+  type        = string
 }
 
 variable "storage_account_access_key" {
