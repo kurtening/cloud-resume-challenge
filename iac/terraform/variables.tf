@@ -38,23 +38,8 @@ variable "github_repository_full_name" {
   type        = string
 }
 
-variable "ARM_CLIENT_ID" {
-  description = "Azure Service Principal Client ID"
-  type        = string
-}
-
-variable "ARM_CLIENT_SECRET" {
-  description = "Azure Service Principal Client Secret"
+variable "azure_credentials_plaintext" {
+  description = "Azure SP Credentials in Plaintext"
   type        = string
   sensitive   = true
-}
-
-variable "ARM_SUBSCRIPTION_ID" {
-  description = "Azure Subscription ID"
-  type        = string
-}
-
-variable "ARM_TENANT_ID" {
-  description = "Azure Tenant ID"
-  type        = string
 }
