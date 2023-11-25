@@ -9,7 +9,7 @@ resource "github_actions_secret" "storage_account_access_key" {
 }
 
 resource "github_actions_variable" "function_app_name" {
-  repository = data.github_repository.repository.name
+  repository    = data.github_repository.repository.name
   variable_name = "FA_NAME"
-  value = replace(var.function_app_publishing_profile[0].name, "$", "")
+  value         = var.function_app_name
 }
