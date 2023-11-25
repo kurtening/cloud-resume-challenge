@@ -2,12 +2,6 @@ data "github_repository" "repository" {
   full_name = var.repository_full_name
 }
 
-resource "github_actions_secret" "function_app_publishing_profile" {
-  repository      = data.github_repository.repository.name
-  secret_name     = "FA_PUBLISHING_PROFILE"
-  plaintext_value = jsonencode(var.function_app_publishing_profile)
-}
-
 resource "github_actions_secret" "storage_account_access_key" {
   repository      = data.github_repository.repository.name
   secret_name     = "SA_ACCESS_KEY"
