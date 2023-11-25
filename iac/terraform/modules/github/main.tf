@@ -11,7 +11,8 @@ resource "github_actions_secret" "storage_account_access_key" {
 resource "github_actions_secret" "azure_credentials" {
   repository      = data.github_repository.repository.name
   secret_name     = "AZURE_CREDENTIALS"
-  plaintext_value = var.azure_credenitals_plaintext
+  plaintext_value = var.azure_credentials_plaintext
+
 }
 
 resource "github_actions_variable" "function_app_name" {

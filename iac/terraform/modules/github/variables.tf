@@ -13,7 +13,7 @@ variable "storage_account_access_key" {
   type        = string
 }
 
-variable "azure_credenitals_plaintext" {
+variable "azure_credentials_plaintext" {
   description = "Plaintext value for Azure Credentials"
   sensitive   = true
 }
