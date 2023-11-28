@@ -22,3 +22,8 @@ variable "function_app_hostname" {
   description = "The hostname of the function app"
   sensitive   = true
 }
+
+variable "storage_account_name" {
+  description = "The name of the storage account"
+  type        = string
+}
