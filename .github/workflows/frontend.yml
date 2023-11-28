@@ -1,0 +1,23 @@
+name: Azure Storage Account Static Website CI/CD
+
+on:
+    push: 
+        branches: 
+          - main
+          - develop
+        paths:
+          - frontend/*
+
+jobs:
+  build_and_deploy_job:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the repo
+      uses: actions/checkout@v4
+
+    - name: Deploy to Azure Storage Account
+      uses: azure/CLI@v1
+      with:
+        inlineScript: |
+            az storage blob upload-batch --account-name '${{ vars.SA_NAME }}' --account-key ${{ secrets.SA_ACCESS_KEY }} --destination '$web' --source ./frontend --no-progress --overwrite
