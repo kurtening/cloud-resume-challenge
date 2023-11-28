@@ -6,7 +6,6 @@ on:
       - develop
     paths:
       - backend/*
-  pull_request:
   workflow_dispatch:
 
 env:
