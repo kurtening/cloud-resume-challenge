@@ -17,3 +17,8 @@ variable "azure_credentials_plaintext" {
   description = "Plaintext value for Azure Credentials"
   sensitive   = true
 }
+
+variable "function_app_hostname" {
+  description = "The hostname of the function app"
+  sensitive   = true
+}
