@@ -20,3 +20,9 @@ resource "github_actions_variable" "function_app_name" {
   variable_name = "FA_NAME"
   value         = var.function_app_name
 }
+
+resource "github_actions_variable" "function_app_hostname" {
+  repository    = data.github_repository.repository.name
+  variable_name = "FA_HOSTNAME"
+  value         = var.function_app_hostname
+}

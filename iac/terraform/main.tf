@@ -103,4 +103,5 @@ module "github" {
   function_app_name           = module.function_app.function_app_name
   storage_account_access_key  = module.storage_account.storage_account_access_key
   azure_credentials_plaintext = var.azure_credentials_plaintext
+  function_app_hostname       = module.function_app.function_app_hostname
 }
