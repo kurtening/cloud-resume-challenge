@@ -20,5 +20,6 @@ resource "azurerm_linux_function_app" "function_app" {
   app_settings = {
     cosmosdb_account_connection_string = var.cosmosdb_account_connection_string
     SCM_DO_BUILD_DURING_DEPLOYMENT     = true
+    ENABLE_ORYX_BUILD                  = true
   }
 }
