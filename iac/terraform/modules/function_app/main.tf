@@ -16,6 +16,9 @@ resource "azurerm_linux_function_app" "function_app" {
   functions_extension_version = "~4"
   site_config {
     application_insights_key = var.application_insights_key
+    application_stack {
+      python_version = 3.11
+    }
   }
   app_settings = {
     cosmosdb_account_connection_string = var.cosmosdb_account_connection_string
