@@ -15,12 +15,13 @@ def increment_visitor_count(table_service, partition_key, row_key):
     try:
         entity = table_service.get_entity(TABLE_NAME, partition_key, row_key)
         current_value = int(entity.get("Value", 0))
-    except models.AzureHttpError:
+    except:
         # If the entity does not exist, create a new one
         current_value = 0
         entity = {
                     "PartitionKey": partition_key,
                     "RowKey": row_key,
+                    "Description": "Visitor Count of the page",
                     "Value": "1"
                   }
         table_service.insert_entity(TABLE_NAME, entity)
